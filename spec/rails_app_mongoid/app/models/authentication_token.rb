@@ -7,4 +7,6 @@ class AuthenticationToken
   field :last_used_at, type: DateTime
   field :ip_address, type: String
   field :user_agent, type: String
+  field :expires_in, type: Integer, default: 0
+
 end
