@@ -9,6 +9,10 @@ module Tiddle
     TokenIssuer.build.create_and_return_token(resource, request, options)
   end
 
+  def self.renew_token(resource, request, options = {})
+    TokenIssuer.build.renew_token(resource, request, options)
+  end
+
   def self.expire_token(resource, request)
     TokenIssuer.build.expire_token(resource, request)
   end
