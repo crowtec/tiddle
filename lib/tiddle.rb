@@ -20,6 +20,18 @@ module Tiddle
   def self.purge_old_tokens(resource)
     TokenIssuer.build.purge_old_tokens(resource)
   end
+
+  def self.list_tokens(resource)
+    TokenIssuer.build.list_tokens(resource)
+  end
+
+  def self.last_used_token(resource)
+    TokenIssuer.build.last_used_token(resource)
+  end
+
+  def self.last_used_at(resource)
+    TokenIssuer.build.last_used_at(resource)
+  end
 end
 
 Devise.add_module :token_authenticatable,

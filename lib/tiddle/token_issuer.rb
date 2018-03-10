@@ -47,6 +47,20 @@ module Tiddle
               .destroy_all
     end
 
+    def list_tokens(resource)
+      resource.authentication_tokens
+              .order(last_used_at: :desc)
+              .offset(maximum_tokens_per_user)
+    end
+
+    def last_used_token(resource)
+      self.list_tokens(resource).first
+    end
+
+    def last_used_at(resource)
+      self.last_used_token(resource).last_used_at
+    end
+
     private
 
     attr_accessor :maximum_tokens_per_user
