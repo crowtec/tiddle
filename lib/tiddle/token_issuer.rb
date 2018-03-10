@@ -50,7 +50,7 @@ module Tiddle
     def list_tokens(resource)
       resource.authentication_tokens
               .order(last_used_at: :desc)
-              .offset(maximum_tokens_per_user)
+              .limit(maximum_tokens_per_user)
     end
 
     def last_used_token(resource)
