@@ -11,5 +11,6 @@ module RailsApp
     config.eager_load = true
     config.root = File.expand_path('../../.', __FILE__)
     config.consider_all_requests_local = true
+    config.active_record.sqlite3.represent_boolean_as_integer = true if config.active_record.sqlite3
   end
 end

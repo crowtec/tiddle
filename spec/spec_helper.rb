@@ -66,8 +66,12 @@ RSpec.configure do |config|
   end
 
   config.before(:suite) do
-    # Do initial migration
+    backend.setup_database_cleaner
     backend.migrate!
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.clean if defined?(DatabaseCleaner)
   end
 
   config.use_transactional_fixtures = true
