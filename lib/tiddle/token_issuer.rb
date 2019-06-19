@@ -24,8 +24,14 @@ module Tiddle
     end
 
     def renew_token(resource, request, expires_in: nil)
-      expire_token(resource, request)
-      create_and_return_token(resource, request, expires_in: nil)
+      token_class = authentication_token_class(resource)
+      token, token_body = Devise.token_generator.generate(token_class, :body)
+
+      find_token(resource, request.headers["X-#{ModelName.new.with_dashes(resource)}-TOKEN"]).update!(
+        token_attributes(token_body, request, expires_in)
+      )
+
+      token
     end
 
     def expire_token(resource, request)
